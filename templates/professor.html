@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Professor</h1>
+<div class="divMaior">
+    <form action="/professor" enctype="multipart/form-data" method="post">
+        <div><label>Nome:</label></div>
+        <div><input type="text" name="nome"/></div>
+        <div><label>Área:</label></div>
+        <div><input type="text" name="area"/></div>
+        <div><label>Perfil:</label></div>
+        <div><input type="text" name="perfil"/></div>
+        <div><label>Email:</label></div>
+        <div><input type="text" name="email"/></div>
+        <div><label>Foto:</label></div>
+        <div><input type="file" name="img"/></div>
+        <div><input type="submit" value="Adicionar" class="adicionar"></div>
+    </form>
+</div>
+
+<h1>Professores</h1>
+<table>
+    <tr>
+        <th>Foto</th>
+        <th>Nome</th>
+        <th>Área</th>
+        <th>Perfil</th>
+        <th>email</th>
+        <th>Editar</th>
+        <th>Excluir</th>
+    </tr>
+    {% for professor in professores %}
+        <tr>
+            <td style='width: 36px;'>
+                <img width="64px" height="64px" src="/img?img_id={{professor.key.urlsafe()}}" style=" border-radius: 20px;"></img>
+            </td>
+            <td>{{professor.nome}}</td>
+            <td>{{professor.area}}</td>
+            <td>{{professor.perfil}}</td>
+            <td>{{professor.email}}</td>
+
+            <td style='width: 70px;'>
+                    
+                <a href="#openModal{{professor.nome}}">
+                    <button class="btns"><img src="imagens/edit_btn.png" alt="Editar" height="54" width="54"></button>
+                </a>
+                <div id="openModal{{professor.nome}}" class="modalDialog">
+                    <div class="divMaior">
+                        <h1>Modificar Professor</h1>
+                        <form action="/editprofessor" enctype="multipart/form-data" method="post">
+                            <input type="hidden" name="key" value="{{professor.key.urlsafe()}}">
+                            <div><label>Nome:</label></div>
+                            <div><input type="text" name="nome" value="{{professor.nome}}" /></div>
+                            <div><label>Área:</label></div>
+                            <div><input type="text" name="area" value="{{professor.area}}" /></div>
+                            <div><label>Perfil:</label></div>
+                            <div><input type="text" name="perfil" value="{{professor.perfil}}" /></div>
+                            <div><label>Email:</label></div>
+                            <div><input type="text" name="email" value="{{professor.email}}" /></div>
+                            <div><input type="submit" value="Atualizar" class="adicionar" href="#close" title="Close" class="close"></div>
+                        </form>
+                    </div>
+                </div>
+            </td>
+            <td style='width: 70px;'>
+                <a href="/deleteprofessor?key={{professor.key.urlsafe()}}">
+                    <button class="btns"><img src="imagens/delete_btn.png" alt="Excluir" height="54" width="54"></button>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

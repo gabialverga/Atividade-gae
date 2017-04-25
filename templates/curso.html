@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Curso</h1>
+<div class="divMaior">
+    <form action="/curso" enctype="multipart/form-data" method="post">
+        <div><label>Nome:</label></div>
+        <div><input type="text" name="nome"/></div>
+        <div><label>Períodos:</label></div>
+        <div><input type="number" name="periodos" min="0"/></div>
+        <div><label>Semestral:</label></div>
+        <div>
+            <input type="radio" name="semestral" value="É semestral" checked>É semestral
+            <input type="radio" name="semestral" value="Não é semestral">Não é semestral 
+        </div>
+        <div><input type="submit" value="Adicionar" class="adicionar adicionar1"></div>
+    </form>
+</div>
+
+
+<h1>Cursos</h1>
+<table>
+    <tr>
+        <th>Nome</th>
+        <th>Períodos</th>
+        <th>Semestral</th>
+        <th>Adicionar Disciplina</th>
+        <th>Listar Disciplina</th>
+        <th>Editar</th>
+        <th>Excluir</th>
+    </tr>
+    {% for curso in cursos %}
+        <tr>
+            <td>{{curso.nome}}</td>
+            <td style='width: 90px;'>{{curso.periodos}}</td>
+            <td style='width: 130px;'>{{curso.semestral}}</td>
+            <td style='width: 80px;'>
+                <a href="/disciplina?key={{curso.key.urlsafe()}}">
+                    <button class="btns"><img src="imagens/add_btn.png" alt="Adicionar" height="32" width="32"></button>
+                </a>
+            </td>
+            <td style='width: 80px;'>
+                <a href="/disciplina?key={{curso.key.urlsafe()}}">
+                    <button class="btns"><img src="imagens/list_btn.png" alt="Listar" height="32" width="32"></button>
+                </a>
+            </td>
+            <td style='width: 70px;'>
+                    
+                <a href="#openModal{{curso.nome}}">
+                    <button class="btns"><img src="imagens/edit_btn.png" alt="Editar" height="32" width="32"></button>
+                </a>
+                <div id="openModal{{curso.nome}}" class="modalDialog">
+                    <div class="divMaior">
+                        <h1>Modificar Curso</h1>
+                        <form action="/editcurso" enctype="multipart/form-data" method="post">
+                            <input type="hidden" name="key" value="{{curso.key.urlsafe()}}">
+                            <div><label>Nome:</label></div>
+                            <div><input type="text" name="nome" value="{{curso.nome}}" /></div>
+                            <div><label>Períodos:</label></div>
+                            <div><input type="number" name="periodos" min="0" value="{{curso.periodos}}" /></div>
+                            <div><label>Semestral:</label></div>
+                            <div>
+                                {% if curso.semestral == "É semestral" %}
+                                    <input type="radio" name="semestral" value="É semestral" checked>É semestral
+                                    <input type="radio" name="semestral" value="Não é semestral">Não é semestral
+                                {% else %}
+                                    <input type="radio" name="semestral" value="É semestral">É semestral
+                                    <input type="radio" name="semestral" value="Não é semestral" checked>Não é semestral
+                                {% endif %}
+                            </div>
+                            <div><input type="submit" value="Atualizar" class="adicionar" href="#close" title="Close" class="close"></div>
+                        </form>
+                    </div>
+                </div>
+            </td>
+            <td style='width: 70px;'>
+                <a href="/deletecurso?key={{curso.key.urlsafe()}}">
+                    <button class="btns"><img src="imagens/delete_btn.png" alt="Excluir" height="32" width="32"></button>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Disciplina</h1>
+<div class="divMaior">
+    <form action="/disciplina" enctype="multipart/form-data" method="post">
+        <input type="hidden" name="key" value="{{key_curso.urlsafe()}}">
+        <div><label>Nome:</label></div>
+        <div><input type="text" name="nome"/></div>
+        <div><label>Períodos:</label></div>
+        <div><input type="number" name="periodos" min="0" /></div>
+        <div><input type="submit" value="Adicionar" class="adicionar adicionar1"></div>
+    </form>
+</div>
+
+
+<h1>Disciplina</h1>
+<table>
+    <tr>
+        <th>Nome</th>
+        <th>Períodos</th>
+        <th>Editar</th>
+        <th>Excluir</th>
+    </tr>
+    {% for disc in disciplina %}
+        <tr>
+            <td>{{disc.nome}}</td>
+            <td style='width: 90px;'>{{disc.periodos}}</td>
+            <td style='width: 70px;'>
+                <a href="#openModal{{disc.nome}}">
+                    <button class="btns"><img src="imagens/edit_btn.png" alt="Editar" height="32" width="32"></button>
+                </a>
+                <div id="openModal{{disc.nome}}" class="modalDialog">
+                    <div class="divMaior">
+                        <h1>Modificar Disciplina</h1>
+                        <form action="/editdisciplina" enctype="multipart/form-data" method="post">
+                            <input type="hidden" name="key" value="{{disc.key.urlsafe()}}">
+                            <input type="hidden" name="key_curso" value="{{key_curso.urlsafe()}}">
+                            <div><label>Nome:</label></div>
+                            <div><input type="text" name="nome" value="{{disc.nome}}" /></div>
+                            <div><label>Períodos:</label></div>
+                            <div><input type="number" name="periodos" min="0" value="{{disc.periodos}}" /></div>
+                           <div><input type="submit" value="Atualizar" class="adicionar" href="#close" title="Close" class="close"></div>
+                        </form>
+                    </div>
+                </div>
+            </td>
+            <td style='width: 70px;'>
+                <a href="/deletedisciplina?key={{disc.key.urlsafe()}}&key_curso={{key_curso.urlsafe()}}">
+                    <button class="btns"><img src="imagens/delete_btn.png" alt="Excluir" height="32" width="32"></button>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+
+{% endblock %}
