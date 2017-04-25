@@ -1,0 +1,182 @@
+h1{
+    text-align: center;
+    text-decoration: none;
+}
+
+body{
+    background-image: url("../imagens/wallpaper.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.divMaior{
+    background-color: #cae8cb;
+    width: 40%;
+    border: 3px solid #4CAF50;
+    padding: 25px;
+    margin: 25px;
+    margin-left:28%;
+}
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    width: 49%;
+}
+
+.button1 {
+    background-color: transparent;
+    color: black; 
+    border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+.b {
+    background: radial-gradient(#00cc66, #79d2a6,transparent  80%);
+    border: none;
+    padding: 20px 40px;
+    font-size: 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    min-width: 230px;
+    width: 25%;
+}
+
+.b1 {
+    font-size: 35px;
+    background: transparent;
+    color: black;
+}
+
+.b1:hover {
+    background: radial-gradient(#00cc66, #79d2a6,transparent 80%);
+}
+
+.adicionar {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btns {
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    transition: 0.5s;
+    outline: none;
+    background-color: white;
+    border: 20%;
+}
+
+input[type=text]:focus {
+    border: 3px solid #4CAF50;
+}
+
+input[type=number] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    transition: 0.5s;
+    outline: none;
+    background-color: white;
+}
+
+input[type=number]:focus {
+    border: 3px solid #4CAF50;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: center;
+    text-decoration: none;
+    border: 3px solid #dcefdc;
+}
+
+td{
+    background-color: #cae8cb;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.modalDialog {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #e6e6e6;
+  z-index: 99999;
+  opacity: 0;
+  pointer-events: none;
+  filter:alpha(opacity=80);
+}
+.modalDialog:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modalDialog > div {
+  width: 40%;
+  position: relative;
+  margin: 5% auto;
+  padding: 25px;
+  background-color: #cae8cb;
+}
+.close {
+  color: #FFFFFF;
+  line-height: 25px;
+  position: absolute;
+  right: -12px;
+  text-align: center;
+  top: -10px;
+  width: 24px;
+  text-decoration: none;
+  font-weight: bold;
+}
+.close:hover {
+  background-color: #cae8cb;
+}
